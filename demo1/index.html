@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高级待办事项列表</title>
+    <style>
+      :root {
+          --primary-color: #4CAF50;
+          --secondary-color: #ff4444;
+          --bg-color: #f4f4f4;
+          --item-bg-color: #f9f9f9;
+          --text-color: #333;
+          --container-bg-color: white;
+      }
+  
+      .dark-theme {
+          --primary-color: #45a049;
+          --secondary-color: #ff6b6b;
+          --bg-color: #333;
+          --item-bg-color: #444;
+          --text-color: #f4f4f4;
+          --container-bg-color: #222;
+      }
+  
+      body {
+          font-family: Arial, sans-serif;
+          line-height: 1.6;
+          margin: 0;
+          padding: 20px;
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          transition: background-color 0.3s ease, color 0.3s ease;
+      }
+  
+      .container {
+          max-width: 500px;
+          margin: 0 auto;
+          background-color: var(--container-bg-color);
+          padding: 20px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+          transition: background-color 0.3s ease;
+      }
+  
+      h1 {
+          text-align: center;
+          color: var(--text-color);
+      }
+  
+      #todoForm {
+          display: flex;
+          margin-bottom: 20px;
+      }
+  
+      #todoInput {
+          flex-grow: 1;
+          padding: 10px;
+          font-size: 16px;
+          border: 1px solid #ddd;
+          border-radius: 4px 0 0 4px;
+          background-color: var(--item-bg-color);
+          color: var(--text-color);
+      }
+  
+      #addButton {
+          padding: 10px 20px;
+          background-color: var(--primary-color);
+          color: white;
+          border: none;
+          border-radius: 0 4px 4px 0;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+  
+      #addButton:hover {
+          background-color: #45a049;
+      }
+  
+      #todoList {
+          list-style-type: none;
+          padding: 0;
+      }
+  
+      .todo-item {
+          background-color: var(--item-bg-color);
+          padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 4px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+      }
+  
+      .todo-item.completed {
+          text-decoration: line-through;
+          opacity: 0.6;
+      }
+  
+      .todo-item.removing {
+          opacity: 0;
+          transform: translateX(100%);
+      }
+  
+      .deleteBtn, .completeBtn {
+          padding: 5px 10px;
+          color: white;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+  
+      .deleteBtn {
+          background-color: var(--secondary-color);
+      }
+  
+      .completeBtn {
+          background-color: var(--primary-color);
+          margin-right: 5px;
+      }
+  
+      #filterButtons {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 20px;
+      }
+  
+      .filterBtn {
+          margin: 0 5px;
+          padding: 5px 10px;
+          background-color: #ddd;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          transition: background-color 0.3s ease, color 0.3s ease;
+      }
+  
+      .filterBtn.active {
+          background-color: var(--primary-color);
+          color: white;
+      }
+  
+      #themeToggle {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          padding: 5px 10px;
+          background-color: var(--text-color);
+          color: var(--bg-color);
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          transition: background-color 0.3s ease, color 0.3s ease;
+      }
+  </style>
+</head>
+<body>
+    <button id="themeToggle">切换主题</button>
+    <div class="container">
+        <h1>高级待办事项列表</h1>
+        <div id="filterButtons">
+            <button class="filterBtn active" data-filter="all">全部</button>
+            <button class="filterBtn" data-filter="active">未完成</button>
+            <button class="filterBtn" data-filter="completed">已完成</button>
+        </div>
+        <form id="todoForm">
+            <input type="text" id="todoInput" placeholder="输入新的待办事项" required>
+            <button type="submit" id="addButton">添加</button>
+        </form>
+        <ul id="todoList"></ul>
+    </div>
+
+    <script type="module">
+        import { TodoList } from './todoList.js';
+        import { ThemeManager } from './themeManager.js';
+
+        const todoList = new TodoList('todoList', 'todoForm', 'todoInput');
+        const themeManager = new ThemeManager('themeToggle');
+
+        // 初始化过滤按钮
+        const filterButtons = document.querySelectorAll('.filterBtn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                todoList.filterTodos(e.target.dataset.filter);
+            });
+        });
+    </script>
+</body>
+</html>
