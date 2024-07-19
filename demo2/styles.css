@@ -1,0 +1,250 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --background-color: #ecf0f1;
+  --text-color: #34495e;
+  --card-background: #fff;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+html,body,p,h1,h2,h3 {
+  margin: 0;
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+html.dark-theme {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --background-color: #2c3e50;
+  --text-color: #ecf0f1;
+  --card-background: #34495e;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+.dark-theme section {
+    background-color: var(--card-background);
+}
+
+.dark-theme h2 {
+    color: var(--primary-color);
+}
+
+/* 主题切换按钮样式 */
+#theme-toggle {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid currentColor;
+}
+
+#theme-toggle:hover {
+  background-color: var(--secondary-color);
+}
+
+.dark-theme #theme-toggle {
+    background-color: #f39c12;
+    color: #2c3e50;
+}
+
+.dark-theme #theme-toggle:hover {
+    background-color: #f1c40f;
+}
+
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s ease;
+  cursor: move;
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card.dragging {
+  opacity: 0.5;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+header {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 20px;
+}
+
+section {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+h2 {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+.room-temp, .light-switch {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+input[type="range"] {
+  flex-grow: 1;
+  margin: 0 10px;
+}
+
+.temp-display {
+  min-width: 50px;
+  text-align: right;
+}
+
+.toggle {
+  appearance: none;
+  width: 50px;
+  height: 26px;
+  background-color: #ddd;
+  border-radius: 13px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle::before {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.toggle:checked {
+  background-color: var(--secondary-color);
+}
+
+.toggle:checked::before {
+  transform: translateX(24px);
+}
+
+#todo-form {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+#todo-input {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+}
+
+#todo-form button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+#todos {
+  list-style-type: none;
+  padding: 0;
+}
+
+#todos li {
+  background-color: var(--card-background);
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+#todos li.removing {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.notification.show {
+  opacity: 1;
+}
+
+.dark-theme {
+  --background-color: #2c3e50;
+  --text-color: #ecf0f1;
+  --card-background: #34495e;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+      grid-template-columns: 1fr;
+  }
+}

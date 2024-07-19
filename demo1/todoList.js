@@ -59,7 +59,14 @@ export class TodoList {
         this.currentFilter = filter;
         this.render();
     }
-
+    escapeHtml(unsafe) {
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
     saveToStorage() {
         localStorage.setItem('todos', JSON.stringify(this.todos));
     }
@@ -73,7 +80,7 @@ export class TodoList {
 
         this.list.innerHTML = filteredTodos.map(todo => `
             <li class="todo-item ${todo.completed ? 'completed' : ''}" data-id="${todo.id}">
-                <span>${todo.text}</span>
+                <span>${this.escapeHtml(todo.text)}</span>
                 <div>
                     <button class="completeBtn">${todo.completed ? '取消完成' : '完成'}</button>
                     <button class="deleteBtn">删除</button>
