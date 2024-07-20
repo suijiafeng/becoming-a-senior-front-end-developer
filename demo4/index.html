@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高级图表仪表板</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // 立即应用存储的主题，防止闪烁
+        (function() {
+            const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+            if (isDarkTheme) {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <h1>高级图表仪表板</h1>
+        <button id="theme-toggle">切换主题</button>
+    </header>
+    <main>
+        <div class="dashboard-grid">
+            <div class="chart-container">
+                <h2>销售趋势</h2>
+                <canvas id="sales-chart"></canvas>
+                <div class="loader"></div>
+            </div>
+            <div class="chart-container">
+                <h2>产品类别分布</h2>
+                <canvas id="category-chart"></canvas>
+                <div class="loader"></div>
+            </div>
+            <div class="chart-container">
+                <h2>月度收入</h2>
+                <canvas id="income-chart"></canvas>
+                <div class="loader"></div>
+            </div>
+            <div class="chart-container">
+                <h2>客户满意度</h2>
+                <canvas id="satisfaction-chart"></canvas>
+                <div class="loader"></div>
+            </div>
+        </div>
+        <div class="controls">
+            <select id="data-filter">
+                <option value="all">所有数据</option>
+                <option value="last-month">上个月</option>
+                <option value="last-quarter">上个季度</option>
+                <option value="last-year">去年</option>
+            </select>
+            <button id="refresh-data">刷新数据</button>
+        </div>
+    </main>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
