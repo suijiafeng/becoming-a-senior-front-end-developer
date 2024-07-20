@@ -1,6 +1,6 @@
 import { TodoList } from './todoList.js';
 import { ThemeManager } from './themeManager.js';
-
+import './components/TodoCounter.js';
 const todoList = new TodoList('todoList', 'todoForm', 'todoInput');
 const themeManager = new ThemeManager('themeToggle');
 

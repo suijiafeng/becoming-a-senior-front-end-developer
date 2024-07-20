@@ -87,5 +87,7 @@ export class TodoList {
                 </div>
             </li>
         `).join('');
+
+        document.querySelector('todo-counter').setAttribute('count', this.todos.length);
     }
 }

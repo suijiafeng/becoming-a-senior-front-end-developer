@@ -1,91 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>智能家居控制面板</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script>
-      (function () {
-        const isDarkTheme = localStorage.getItem("darkTheme") === "true";
-        if (isDarkTheme) {
-          document.documentElement.classList.add("dark-theme");
-        }
-      })();
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高级图片库</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
     <header>
-      <h1>智能家居控制面板</h1>
-      <button id="theme-toggle">切换主题</button>
+        <h1>高级图片库</h1>
     </header>
-
-    <main class="dashboard" id="dashboard" >
-      <section id="weather-widget" class="card" draggable="true">
-        <h2>天气信息</h2>
-        <!-- 天气信息将通过 JavaScript 动态插入 -->
-      </section>
-
-      <section id="temperature-control" class="card" draggable="true">
-        <h2>温度控制</h2>
-        <div class="room-temp">
-          <label for="living-room-temp">客厅温度：</label>
-          <input
-            type="range"
-            id="living-room-temp"
-            min="16"
-            max="30"
-            value="22"
-          />
-          <span class="temp-display">22°C</span>
+    <main>
+        <!-- 介绍部分 -->
+        <section class="intro">
+            <h2>欢迎来到我们的图片库</h2>
+            <p>向下滚动以查看图片随滚动加载的效果。</p>
+        </section>
+        <!-- 图片库容器 -->
+        <div class="gallery">
+            <!-- 图片将通过 JavaScript 动态添加到这里 -->
         </div>
-        <div class="room-temp">
-          <label for="bedroom-temp">卧室温度：</label>
-          <input type="range" id="bedroom-temp" min="16" max="30" value="20" />
-          <span class="temp-display">20°C</span>
-        </div>
-      </section>
-
-      <section id="lighting-control" class="card" draggable="true">
-        <h2>灯光控制</h2>
-        <div class="light-switch">
-          <label for="living-room-light">客厅灯：</label>
-          <input type="checkbox" id="living-room-light" class="toggle" />
-        </div>
-        <div class="light-switch">
-          <label for="bedroom-light">卧室灯：</label>
-          <input type="checkbox" id="bedroom-light" class="toggle" />
-        </div>
-      </section>
-
-      <section id="energy-usage" class="card" draggable="true">
-        <h2>能源使用统计</h2>
-        <canvas id="energy-chart"></canvas>
-      </section>
-
-      <section id="todo-list" class="card" draggable="true">
-        <h2>待办事项</h2>
-        <form id="todo-form">
-          <input
-            type="text"
-            id="todo-input"
-            placeholder="添加新的待办事项"
-            required
-          />
-          <button type="submit">添加</button>
-        </form>
-        <ul id="todos"></ul>
-      </section>
     </main>
-
-    <div
-      id="notification"
-      class="notification"
-      aria-live="assertive"
-      hidden
-    ></div>
-
-    <script type="module" src="./app.js"></script>
-  </body>
+    <footer>
+        <p>© 2023 高级图片库</p>
+    </footer>
+    <script src="./script.js"></script>
+</body>
 </html>
