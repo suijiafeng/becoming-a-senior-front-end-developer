@@ -1,0 +1,171 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --background-color: #ecf0f1;
+  --card-background: #ffffff;
+  --text-color: #34495e;
+  --border-color: #ddd;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --background-color: #2c3e50;
+  --card-background: #34495e;
+  --text-color: #ecf0f1;
+  --border-color: #4a5c6b;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn, .select {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+.select {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.editor-container, .preview-container {
+  height: calc(100vh - 180px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-tabs {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  border: none;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tab-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+#editor {
+  flex-grow: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.CodeMirror {
+  height: 100% !important;
+  font-size: 14px;
+  background-color: var(--card-background) !important;
+  color: var(--text-color) !important;
+}
+
+#preview-frame {
+  flex-grow: 1;
+  border: none;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  color: white;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+.notification.info { background-color: var(--primary-color); }
+.notification.success { background-color: var(--secondary-color); }
+.notification.error { background-color: #e74c3c; }
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  10%, 90% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  main {
+      grid-template-columns: 1fr;
+  }
+
+  .editor-container, .preview-container {
+      height: 50vh;
+  }
+}
